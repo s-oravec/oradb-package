@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/s-oravec/oradb-package.git"
+    "url": "git+https://github.com/s-oravec/oradbpm-package-schema.git"
   },
   "keywords": [
     "OraDBPM"
@@ -16,9 +16,9 @@
   "author": "Štefan Oravec <stefan.oravec@me.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/s-oravec/oradb-package/issues"
+    "url": "https://github.com/s-oravec/oradbpm-package-schema/issues"
   },
-  "homepage": "https://github.com/s-oravec/oradb-package#readme",
+  "homepage": "https://github.com/s-oravec/oradbpm-package-schema#readme",
   "dependencies": {
     "ajv": "^1.4.9",
     "semver": "^5.0.3"
