@@ -1,0 +1,35 @@
+{
+  "name": "oradbpm-package-schema",
+  "version": "0.0.1",
+  "description": "OraDBPM Package JSON Schema",
+  "main": "./lib/oradbpm-package-schema.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/s-oravec/oradb-package.git"
+  },
+  "keywords": [
+    "OraDBPM"
+  ],
+  "author": "Štefan Oravec <stefan.oravec@me.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/s-oravec/oradb-package/issues"
+  },
+  "homepage": "https://github.com/s-oravec/oradb-package#readme",
+  "dependencies": {
+    "ajv": "^1.4.9",
+    "semver": "^5.0.3"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-mocha-test": "^0.12.7",
+    "lodash": "^3.10.1",
+    "mocha": "^2.3.3"
+  }
+}
