@@ -100,10 +100,6 @@
       ],
       "description": "language in which is package implemented"
     },
-    "dependencies": {
-      "$ref": "#/definitions/dependencies",
-      "description": "collection of runtime package dependencies declarations"
-    },
     "description": {
       "type": "string",
       "description": "package description"
@@ -116,10 +112,6 @@
       "type": "string",
       "description": "package license"
     },
-    "repository": {
-      "format": "uri",
-      "description": "package git repository uri"
-    },
     "keywords" : {
       "type" : "array",
       "items" : {
@@ -130,6 +122,22 @@
       "minItems" : 1,
       "description" : "list of keywords",
       "uniqueItems" : true
+    },
+    "repository": {
+      "format": "uri",
+      "description": "package git repository uri"
+    },
+    "bugs": {
+      "format": "uri",
+      "description": "package bug & issue tracking page"
+    },
+    "homepage": {
+      "format": "uri",
+      "description": "package homepage"
+    },
+    "dependencies": {
+      "$ref": "#/definitions/dependencies",
+      "description": "collection of runtime package dependencies declarations"
     }
   },
   "required": [
