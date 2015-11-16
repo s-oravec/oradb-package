@@ -5,16 +5,6 @@
   "description": "https://raw.githubusercontent.com/s-oravec/oradb-package/master/oradbpm-package-schema.json",
   "type": "object",
   "definitions": {
-    "dependencies": {
-      "patternProperties": {
-        "^[a-z][\\$#a-z0-9_]*$": {
-          "$ref": "#/definitions/dependency"
-        }
-      },
-      "minProperties": 1,
-      "additionalProperties": false,
-      "description": "collection of packages and their versionRange declarations"
-    },
     "semverVersion": {
       "type": "string",
       "format" : "semverVersion",
@@ -24,6 +14,43 @@
       "type": "string",
       "format" : "semverVersionRange",
       "description": "valid semver versionRange (https://github.com/npm/node-semver)"
+    },
+    "dependency": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/semverVersionRange",
+          "description": "package dependency as semver versionRange declaration"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "version": {
+              "$ref": "#/definitions/semverVersionRange",
+              "description": "package semver versionRange declaration"
+            },
+            "local": {
+              "type": "boolean",
+              "description": "dependency should be deployed as local"
+            }
+          },
+          "required": [
+            "version"
+          ],
+          "description": "package dependency as dependency object",
+          "additionalProperties": false
+        }
+      ],
+      "description": "package dependency"
+    },
+    "dependencies": {
+      "patternProperties": {
+        "^[a-z][\\$#a-z0-9_]*$": {
+          "$ref": "#/definitions/dependency"
+        }
+      },
+      "minProperties": 1,
+      "additionalProperties": false,
+      "description": "collection of packages and their versionRange declarations"
     },
     "person": {
       "oneOf": [
@@ -53,33 +80,6 @@
         }
       ],
       "description": "person definition"
-    },
-    "dependency": {
-      "oneOf": [
-        {
-          "$ref": "#/definitions/semverVersionRange",
-          "description": "package dependency as semver versionRange declaration"
-        },
-        {
-          "type": "object",
-          "properties": {
-            "version": {
-              "$ref": "#/definitions/semverVersionRange",
-              "description": "package semver versionRange declaration"
-            },
-            "local": {
-              "type": "boolean",
-              "description": "dependency should be deployed as local"
-            }
-          },
-          "required": [
-            "version"
-          ],
-          "description": "package dependency as dependency object",
-          "additionalProperties": false
-        }
-      ],
-      "description": "package dependency"
     }
   },
   "properties": {
@@ -104,13 +104,13 @@
       "type": "string",
       "description": "package description"
     },
-    "author": {
-      "$ref": "#/definitions/person",
-      "description": "package author"
-    },
     "license": {
       "type": "string",
       "description": "package license"
+    },
+    "author": {
+      "$ref": "#/definitions/person",
+      "description": "package author"
     },
     "keywords" : {
       "type" : "array",
