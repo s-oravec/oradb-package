@@ -8,7 +8,7 @@
     "semverVersion": {
       "type": "string",
       "format" : "semverVersion",
-      "description": "valid semver version (https://github.com/npm/node-semver) version"
+      "description": "valid semver version (https://github.com/npm/node-semver)"
     },
     "semverVersionRange": {
       "type": "string",
