@@ -13,7 +13,7 @@ module.exports = function (grunt) {
     },
 
     watch: {
-      files: ['gruntfile.js', 'test/**/*.js'],
+      files: ['gruntfile.js', 'test/**/*.js', 'lib/**/*'],
       tasks: ['mochaTest'],
       options: {
         spawn: true
