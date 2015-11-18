@@ -7,77 +7,91 @@
   "definitions": {
     "semverVersion": {
       "type": "string",
-      "format" : "semverVersion",
+      "format": "semverVersion",
       "description": "valid semver version (https://github.com/npm/node-semver)"
     },
     "semverVersionRange": {
       "type": "string",
-      "format" : "semverVersionRange",
+      "format": "semverVersionRange",
       "description": "valid semver versionRange (https://github.com/npm/node-semver)"
+    },
+    "dependencyObject": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "$ref": "#/definitions/semverVersionRange",
+          "description": "package semver versionRange declaration"
+        },
+        "local": {
+          "type": "boolean",
+          "description": "dependency should be deployed as local"
+        }
+      },
+      "required": [
+        "version"
+      ],
+      "description": "package dependency object",
+      "additionalProperties": false
     },
     "dependency": {
       "oneOf": [
         {
           "$ref": "#/definitions/semverVersionRange",
-          "description": "package dependency as semver versionRange declaration"
+          "description": "package dependency as semver versionRange declaration literal"
         },
         {
-          "type": "object",
-          "properties": {
-            "version": {
-              "$ref": "#/definitions/semverVersionRange",
-              "description": "package semver versionRange declaration"
-            },
-            "local": {
-              "type": "boolean",
-              "description": "dependency should be deployed as local"
-            }
-          },
-          "required": [
-            "version"
-          ],
-          "description": "package dependency as dependency object",
-          "additionalProperties": false
+          "$ref": "#/definitions/dependencyObject",
+          "description": "package dependency object"
         }
       ],
       "description": "package dependency"
     },
     "dependencies": {
+      "type": "object",
       "patternProperties": {
         "^[a-z][\\$#a-z0-9_]*$": {
-          "$ref": "#/definitions/dependency"
+          "$ref": "#/definitions/dependency",
+          "description": "properties of dependencies object are package names"
         }
       },
       "minProperties": 1,
       "additionalProperties": false,
       "description": "collection of packages and their versionRange declarations"
     },
+    "personLiteral": {
+      "type": "string",
+      "pattern": ".+\\<.+@.+\\..+\\>",
+      "description": "person defined as name <email>"
+    },
+    "personObject": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "person's name"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "person's email"
+        }
+      },
+      "required": [
+        "name",
+        "email"
+      ],
+      "description": "person defined as person object",
+      "additionalProperties": false
+    },
     "person": {
       "oneOf": [
         {
-          "type": "string",
-          "pattern": ".+\\<.+@.+\\..+\\>",
+          "$ref": "#/definitions/personLiteral",
           "description": "person defined as name <email>"
         },
         {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string",
-              "description": "person's name"
-            },
-            "email": {
-              "type" : "string",
-              "format": "email",
-              "description": "person's email"
-            }
-          },
-          "required": [
-            "name",
-            "email"
-          ],
-          "description": "person defined as person object",
-          "additionalProperties": false
+          "$ref": "#/definitions/personObject",
+          "description": "person defined as person object"
         }
       ],
       "description": "person definition"
@@ -86,7 +100,7 @@
   "properties": {
     "name": {
       "type": "string",
-      "pattern" : "^[a-z][\\$#a-z0-9_]*$",
+      "pattern": "^[a-z][\\$#a-z0-9_]*$",
       "description": "package name"
     },
     "version": {
@@ -94,6 +108,7 @@
       "description": "package version - must be valid semver version"
     },
     "language": {
+      "type": "string",
       "enum": [
         "sql",
         "plsql",
@@ -113,29 +128,29 @@
       "$ref": "#/definitions/person",
       "description": "package author"
     },
-    "keywords" : {
-      "type" : "array",
-      "items" : {
-        "type" : "string",
-        "description" : "keyword"
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "keyword"
       },
-      "aditionalItems" : "false",
-      "minItems" : 1,
-      "description" : "list of keywords",
-      "uniqueItems" : true
+      "aditionalItems": "false",
+      "minItems": 1,
+      "description": "list of keywords",
+      "uniqueItems": true
     },
     "repository": {
-      "type" : "string",
+      "type": "string",
       "format": "uri",
       "description": "package git repository uri"
     },
     "bugs": {
-      "type" : "string",
+      "type": "string",
       "format": "uri",
       "description": "package bug & issue tracking page"
     },
     "homepage": {
-      "type" : "string",
+      "type": "string",
       "format": "uri",
       "description": "package homepage"
     },
