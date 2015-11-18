@@ -67,6 +67,7 @@
               "description": "person's name"
             },
             "email": {
+              "type" : "string",
               "format": "email",
               "description": "person's email"
             }
@@ -124,14 +125,17 @@
       "uniqueItems" : true
     },
     "repository": {
+      "type" : "string",
       "format": "uri",
       "description": "package git repository uri"
     },
     "bugs": {
+      "type" : "string",
       "format": "uri",
       "description": "package bug & issue tracking page"
     },
     "homepage": {
+      "type" : "string",
       "format": "uri",
       "description": "package homepage"
     },
