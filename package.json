@@ -1,6 +1,6 @@
 {
   "name": "oradbpm-package-schema",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "OraDBPM Package JSON Schema",
   "main": "./lib/oradbpm-package-schema.js",
   "scripts": {
