@@ -79,8 +79,8 @@ Package dependency as object.
 
 #### Properties
 
-* **\* version** : `semverVersionRange` - version range
-* local : `boolean` - dependency should be deployed as local (within schema of parent package)
+* **\* version** : type:`semverVersionRange` - version range
+* local : type:`boolean` - dependency should be deployed as local (within schema of parent package)
 
 Additional properties are not allowed.
 
@@ -157,7 +157,7 @@ Collection of package names (properties) and their dependency declarations.
 **properties**
 
 * at least 1 property
-* property name pattern: `^[a-z][\$#a-z0-9_]*$`: `type:dependency`
+* property name pattern: `^[a-z][\$#a-z0-9_]*$` type:`dependency`
 
 Additional properties are not allowed.
 
@@ -216,8 +216,8 @@ Person object.
 
 #### Properties
 
-* **\* name*: `type:string` - person's name
-* **\* email*: `format:email` - person's email
+* **\* name*: type:`string` - person's name
+* **\* email*: format:`email` - person's email
 
 Additional properties are not allowed.
 
@@ -368,7 +368,7 @@ Package author.
 
 List of keywords.
 
-* items: `type:string`
+* items: type:`string`
 * at least 1 item
 * items must be unique
 
@@ -433,7 +433,7 @@ Package homepage.
 }
 ````
 
-###
+### dependencies 
 
 Collection of package dependencies.
 
