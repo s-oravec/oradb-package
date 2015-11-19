@@ -60,7 +60,7 @@
     },
     "PersonLiteral": {
       "type": "string",
-      "pattern": ".+\\<.+@.+\\..+\\>",
+      "pattern": "^.+\\<.+@.+\\..+\\>$",
       "description": "person defined as name <email>"
     },
     "PersonObject": {

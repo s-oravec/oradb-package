@@ -41,7 +41,7 @@ ajvInstance.addFormat('semverVersionRange', function (data) {
 
 ## Definitions
 
-### semverVersion
+### SemverVersion
 
 Valid semver version
 
@@ -56,7 +56,7 @@ Valid semver version
 }
 ```
 
-### semverVersionRange
+### SemverVersionRange
 
 Valid semver version range
 
@@ -71,30 +71,13 @@ Valid semver version range
 }
 ```
 
-### dependency
+### DependencyObject
 
-Package dependency - name of package and it's `versionRange` that package depends on. Optionally specify deployment of dependency using `local` property.
+Package dependency as object.
 
-**one of**
+* type: `object`
 
-#### "inline" `versionRange` definition
-
-````JSON
-{
-  "$ref": "#/definitions/semverVersionRange",
-  "description": "package dependency as semver versionRange declaration"
-}
-````
-
-example:
-
-````JSON
-{
-  "package_name": "^1.0.0"
-}
-````
-
-#### dependency object with `version`  and `local` properties.
+#### Properties
 
 * **\* version** : `semverVersionRange` - version range
 * local : `boolean` - dependency should be deployed as local (within schema of parent package)
@@ -141,12 +124,40 @@ example:
 }
 ````
 
-### dependencies
+### Dependency
+
+Package dependency - name of package and it's `versionRange` that package depends on. Optionally specify deployment of dependency using `local` property.
+
+**one of**
+
+#### package dependency as semver versionRange declaration literal
+
+````JSON
+{
+  "$ref": "#/definitions/semverVersionRange",
+  "description": "package dependency as semver versionRange declaration"
+}
+````
+
+#### package dependency object
+
+````JSON
+{
+  "$ref": "#/definitions/DependencyObject",
+  "description": "package dependency object"
+}
+````
+
+### Dependencies
+
+Collection of package names (properties) and their dependency declarations.
+
+* type: `object`
 
 **properties**
 
 * at least 1 property
-* pattern: `^[a-z][\$#a-z0-9_]*$`: `type:dependency`
+* property name pattern: `^[a-z][\$#a-z0-9_]*$`: `type:dependency`
 
 Additional properties are not allowed.
 
@@ -174,18 +185,12 @@ example:
 }
 ````
 
-### person
+### PersonLiteral
 
-Person definition.
-
-**one of**
-
-#### literal
-
-Name and email literal.
+Person literal.
 
 * type: `string`
-* pattern: `.+\\<.+@.+\\..+\\>`
+* pattern: `^.+\\<.+@.+\\..+\\>$`
 
 ````JSON
 {
@@ -203,9 +208,13 @@ example:
 }
 ````
 
-#### object
+### PersonObject
 
-**properties**
+Person object.
+
+* type: `object`
+
+#### Properties
 
 * **\* name*: `type:string` - person's name
 * **\* email*: `format:email` - person's email
@@ -242,6 +251,30 @@ example:
     "name": "Joe Doe",
     "email": "joe.doe@example.com"
   }
+}
+````
+
+### Person
+
+Person definition.
+
+**one of**
+
+#### person literal
+
+````JSON
+{
+  "$ref": "#/definitions/PersonLiteral",
+  "description": "person defined as name <email>"
+}
+````
+
+#### person object
+
+````JSON
+{
+  "$ref": "#/definitions/PersonObject",
+  "description": "person defined as person object"
 }
 ````
 
@@ -359,10 +392,12 @@ Additional items are not allowed.
 
 Package git repository URI.
 
+* type: `string`
 * format: `uri`
 
 ````JSON
 {
+  "type": "string",
   "format": "uri",
   "description": "package git repository uri"
 }
@@ -372,10 +407,12 @@ Package git repository URI.
 
 Package bug & issue tracking page.
 
+* type: `string`
 * format: `uri`
 
 ````JSON
 {
+  "type": "string",
   "format": "uri",
   "description": "package bug & issue tracking page"
 }
@@ -385,10 +422,12 @@ Package bug & issue tracking page.
 
 Package homepage.
 
+* type: `object`
 * format: `uri`
 
 ````JSON
 {
+  "type": "string",
   "format": "uri",
   "description": "package homepage"
 }
