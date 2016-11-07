@@ -1,5 +1,6 @@
 # JSON Schema for OraDBPM Package
-[JSON Schmea draft 04](http://json-schema.org/draft-04/schema#)
+
+Schema based on [JSON Schmea draft 04](http://json-schema.org/draft-04/schema#)
 
 ## Used notation
 
@@ -15,14 +16,14 @@ Version as described by the `v2.0.0` specification found at [http://semver.org/]
 
 `ajv` `semverVersion` format:
 
-````javascript
+```javascript
 var semver = require('semver');
 var ajvInstance = require('ajv')();
 
 ajvInstance.addFormat('semverVersion', function (data) {
     return semver.valid(data, true) !== null;
 });
-````
+```
 
 ### semverVersionRange
 
@@ -30,14 +31,14 @@ Valid semver range as describeed by [node-semver](https://github.com/npm/node-se
 
 `ajv` `semverVersionVersion` format:
 
-````javascript
+```javascript
 var semver = require('semver');
 var ajvInstance = require('ajv')();
 
 ajvInstance.addFormat('semverVersionRange', function (data) {
     return semver.validRange(data, true) !== null;
 });
-````
+```
 
 ## Definitions
 
@@ -48,7 +49,7 @@ Valid semver version
 * type: `string`
 * format: `semverVersion`
 
-```JSON
+```json
 {
   "type": "string",
   "format" : "semverVersion",
@@ -63,7 +64,7 @@ Valid semver version range
 * type: `string`
 * format: `semverVersion`
 
-```JSON
+```json
 {
   "type": "string",
   "format" : "semverVersionRange",
@@ -84,7 +85,7 @@ Package dependency as object.
 
 Additional properties are not allowed.
 
-````JSON
+```json
 {
   "type": "object",
   "properties": {
@@ -103,26 +104,26 @@ Additional properties are not allowed.
   "description": "package dependency as dependency object",
   "additionalProperties": false
 }
-````
+```
 
 example:
 
-````JSON
+```json
 {
   "package_name": {
     "version": "^1.0.0"
   }
 }
-````
+```
 
-````JSON
+```json
 {
   "package_name": {
     "version": "^1.0.0",
     "local": true
   }
 }
-````
+```
 
 ### Dependency
 
@@ -132,21 +133,21 @@ Package dependency - name of package and it's `versionRange` that package depend
 
 #### package dependency as semver versionRange declaration literal
 
-````JSON
+```json
 {
   "$ref": "#/definitions/semverVersionRange",
   "description": "package dependency as semver versionRange declaration"
 }
-````
+```
 
 #### package dependency object
 
-````JSON
+```json
 {
   "$ref": "#/definitions/DependencyObject",
   "description": "package dependency object"
 }
-````
+```
 
 ### Dependencies
 
@@ -161,7 +162,7 @@ Collection of package names (properties) and their dependency declarations.
 
 Additional properties are not allowed.
 
-````JSON
+```json
 {
   "patternProperties": {
     "^[a-z][\\$#a-z0-9_]*$": {
@@ -172,18 +173,18 @@ Additional properties are not allowed.
   "additionalProperties": false,
   "description": "collection of packages and their versionRange declarations"
 }
-````
+```
 
 example:
 
-````JSON
+```json
 {
   "dependencies" : {
     "package_name1" : "^1.0.0",
     "package_name2" : "^2.0.0"
   }
 }
-````
+```
 
 ### PersonLiteral
 
@@ -192,21 +193,21 @@ Person literal.
 * type: `string`
 * pattern: `^.+\\<.+@.+\\..+\\>$`
 
-````JSON
+```json
 {
   "type": "string",
   "pattern": ".+\\<.+@.+\\..+\\>",
   "description": "person defined as name <email>"
 }
-````
+```
 
 example:
 
-````JSON
+```json
 {
   "author": "Joe Doe <joe.doe@email.com>"
 }
-````
+```
 
 ### PersonObject
 
@@ -216,12 +217,12 @@ Person object.
 
 #### Properties
 
-* **\* name*: type:`string` - person's name
-* **\* email*: format:`email` - person's email
+* **\* name**: type:`string` - person's name
+* **\* email**: format:`email` - person's email
 
 Additional properties are not allowed.
 
-````JSON
+```json
 {
   "type": "object",
   "properties": {
@@ -241,18 +242,18 @@ Additional properties are not allowed.
   "description": "person defined as person object",
   "additionalProperties": false
 }
-````
+```
 
 example:
 
-````JSON
+```json
 {
   "author": {
     "name": "Joe Doe",
     "email": "joe.doe@example.com"
   }
 }
-````
+```
 
 ### Person
 
@@ -262,21 +263,21 @@ Person definition.
 
 #### person literal
 
-````JSON
+```json
 {
   "$ref": "#/definitions/PersonLiteral",
   "description": "person defined as name <email>"
 }
-````
+```
 
 #### person object
 
-````JSON
+```json
 {
   "$ref": "#/definitions/PersonObject",
   "description": "person defined as person object"
 }
-````
+```
 
 ## Properties
 
@@ -289,13 +290,13 @@ Package name. Must be valid Oracle schema name.
 * type: `string`
 * pattern: `^[a-z][\\$#a-z0-9_]*$`
 
-````JSON
+```json
 {
   "type": "string",
   "pattern" : "^[a-z][\\$#a-z0-9_]*$",
   "description": "package name"
 }
-````
+```
 
 ### \* version
 
@@ -303,12 +304,12 @@ Package version - must be valid semver version.
 
 * type: `semverVersion`
 
-````JSON
+```json
 {
   "$ref": "#/definitions/semverVersion",
   "description": "package version - must be valid semver version"
 }
-````
+```
 
 ### \* language
 
@@ -316,7 +317,7 @@ Language in which is package implemented.
 
 * enum: \[sql, plsql, sqlplus\]
 
-````JSON
+```json
 {
   "enum": [
     "sql",
@@ -325,7 +326,7 @@ Language in which is package implemented.
   ],
   "description": "language in which is package implemented"
 }
-````
+```
 
 ### \* description
 
@@ -333,23 +334,23 @@ Package description.
 
 * type: `string`
 
-````JSON
+```json
 {
   "type": "string",
   "description": "package description"
 }
-````
+```
 
 ### \* license
 
 Package license.
 
-````JSON
+```json
 {
   "type": "string",
   "description": "package license"
 }
-````
+```
 
 ### author
 
@@ -357,12 +358,12 @@ Package author.
 
 * type: `person`
 
-````JSON
+```json
 {
   "$ref": "#/definitions/person",
   "description": "package author"
 }
-````
+```
 
 ### keywords
 
@@ -374,7 +375,7 @@ List of keywords.
 
 Additional items are not allowed.
 
-````JSON
+```json
 {
   "type": "array",
   "items": {
@@ -386,7 +387,7 @@ Additional items are not allowed.
   "description": "list of keywords",
   "uniqueItems": true
 }
-````
+```
 
 ### repository
 
@@ -395,13 +396,13 @@ Package git repository URI.
 * type: `string`
 * format: `uri`
 
-````JSON
+```json
 {
   "type": "string",
   "format": "uri",
   "description": "package git repository uri"
 }
-````
+```
 
 ### bugs
 
@@ -410,13 +411,13 @@ Package bug & issue tracking page.
 * type: `string`
 * format: `uri`
 
-````JSON
+```json
 {
   "type": "string",
   "format": "uri",
   "description": "package bug & issue tracking page"
 }
-````
+```
 
 ### homepage
 
@@ -425,13 +426,13 @@ Package homepage.
 * type: `object`
 * format: `uri`
 
-````JSON
+```json
 {
   "type": "string",
   "format": "uri",
   "description": "package homepage"
 }
-````
+```
 
 ### dependencies 
 
@@ -439,9 +440,9 @@ Collection of package dependencies.
 
 * type: `dependencies`
 
-````JSON
+```json
 {
   "$ref": "#/definitions/dependencies",
   "description": "collection of runtime package dependencies declarations"
 }
-````
+```

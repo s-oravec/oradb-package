@@ -1,6 +1,7 @@
 # OraDBPM Package JSON Schema
 
-Package defines [JSON Schema](http://www.json-schema.org), extended by adding custom formats for `semverVersion` and
+Package defines [JSON Schema](http://www.json-schema.org) for OraDBPM Package JSON
+Schema JSON Schema is extended by adding custom formats for `semverVersion` and
 `semverVersionRange` and validation function for validation against the schema.
 
 Validation and extension is implemented using [ajv package](https://www.npmjs.com/package/ajv)

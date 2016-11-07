@@ -221,7 +221,7 @@ describe('Schema', function () {
           },
           'package3': {
             'version': '1.0.0',
-            'local': true
+            'peer': true
           }
         }
       }));

@@ -1,5 +1,5 @@
 {
-  "id": "oradb_package@0.0.1",
+  "id": "oradb_package@0.0.2",
   "title": "JSON schema for OraDBPM Package",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "description": "https://raw.githubusercontent.com/s-oravec/oradb-package/master/oradbpm-package-schema.json",
@@ -8,43 +8,43 @@
     "SemverVersion": {
       "type": "string",
       "format": "semverVersion",
-      "description": "valid semver version (https://github.com/npm/node-semver)"
+      "description": "Valid semver version (https://github.com/npm/node-semver)."
     },
     "SemverVersionRange": {
       "type": "string",
       "format": "semverVersionRange",
-      "description": "valid semver versionRange (https://github.com/npm/node-semver)"
+      "description": "Valid semver versionRange (https://github.com/npm/node-semver)."
     },
     "DependencyObject": {
       "type": "object",
       "properties": {
         "version": {
           "$ref": "#/definitions/SemverVersionRange",
-          "description": "package semver versionRange declaration"
+          "description": "Package semver versionRange declaration."
         },
-        "local": {
+        "peer": {
           "type": "boolean",
-          "description": "dependency should be deployed as local"
+          "description": "Dependency should be deployed as peer dependency."
         }
       },
       "required": [
         "version"
       ],
-      "description": "package dependency object",
+      "description": "Package dependency object.",
       "additionalProperties": false
     },
     "Dependency": {
       "oneOf": [
         {
           "$ref": "#/definitions/SemverVersionRange",
-          "description": "package dependency as semver versionRange declaration literal"
+          "description": "Package dependency as semver versionRange declaration literal."
         },
         {
           "$ref": "#/definitions/DependencyObject",
-          "description": "package dependency object"
+          "description": "Package dependency object."
         }
       ],
-      "description": "package dependency"
+      "description": "Package dependency"
     },
     "Dependencies": {
       "type": "object",
@@ -152,11 +152,15 @@
     "homepage": {
       "type": "string",
       "format": "uri",
-      "description": "package homepage"
+      "description": "Package homepage."
     },
     "dependencies": {
       "$ref": "#/definitions/Dependencies",
-      "description": "collection of runtime package dependencies declarations"
+      "description": "Collection of package runtime dependencies declarations."
+    },
+    "devDependencies": {
+      "$ref": "#/definitions/Dependencies",
+      "description": "Collection of package development dependencies declarations."
     }
   },
   "required": [
